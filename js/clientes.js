@@ -44,8 +44,9 @@ function leerClientes(){
     $.ajax({
       url:urlbase,
       type:"POST",
-      data:myData,
+      data:dataTosend,
       datatype:"JSON",
+      contentType: 'application/json',
       success:function(respuesta){
         $("#resultado").empty();
         $("#idCliente").val("");
@@ -72,6 +73,7 @@ function leerClientes(){
         type:"PUT",
         data:dataTosend,
         datatype:"JSON",
+        contentType: 'application/json',
         success:function(respuesta){
           $("#resultado").empty();
           $("#idCliente").val("");

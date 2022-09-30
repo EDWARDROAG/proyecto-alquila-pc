@@ -46,8 +46,9 @@ function traerlistaComputadores(){
     $.ajax({
       url:urlbase,
       type:"POST",
-      data:myData,
+      data:dataTosend,
       datatype:"JSON",
+      contentType: 'application/json',
       success:function(respuesta){
         $("#resultado").empty();
         $("#id").val("");
@@ -57,7 +58,10 @@ function traerlistaComputadores(){
         $("#name").val("");
         traerlistaComputadores();
         alert("se ha guardado el dato ")
-      }
+      },
+      error: function(){
+        alert('Error');
+       }
     });
   }
 
@@ -76,6 +80,7 @@ function traerlistaComputadores(){
         type:"PUT",
         data:dataTosend,
         datatype:"JSON",
+        contentType: 'application/json',
         success:function(respuesta){
           $("#resultado").empty();
           $("#id").val("");
@@ -85,6 +90,9 @@ function traerlistaComputadores(){
           $("#name").val("");
           traerlistaComputadores();
           alert("se ha actualizado   ")
+        },
+        error: function(){
+         alert('Error');
         }
       });
 
