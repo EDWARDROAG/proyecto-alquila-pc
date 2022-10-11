@@ -17,9 +17,9 @@ public class Message implements Serializable {
     private Integer id_message;
     private String message_text;
 
-    private client client_fk;
+    private Client client_fk;
 
-    private client computer_fk;
+    private Client computer_fk;
 
     @ManyToOne
     @JoinColumn(name="id")
@@ -57,19 +57,19 @@ public class Message implements Serializable {
         this.message_text = message_text;
     }
 
-    public PROYECTO.ALQUILA.PC.ALQUILA.PC.modelos.client getClient_fk() {
+    public Client getClient_fk() {
         return client_fk;
     }
 
-    public void setClient_fk(PROYECTO.ALQUILA.PC.ALQUILA.PC.modelos.client client_fk) {
+    public void setClient_fk(Client client_fk) {
         this.client_fk = client_fk;
     }
 
-    public PROYECTO.ALQUILA.PC.ALQUILA.PC.modelos.client getComputer_fk() {
+    public Client getComputer_fk() {
         return computer_fk;
     }
 
-    public void setComputer_fk(PROYECTO.ALQUILA.PC.ALQUILA.PC.modelos.client computer_fk) {
+    public void setComputer_fk(Client computer_fk) {
         this.computer_fk = computer_fk;
     }
 

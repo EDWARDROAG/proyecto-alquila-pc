@@ -19,7 +19,7 @@ public class Category implements Serializable {
 
     @JsonIgnoreProperties("category_fk")
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category_fk")
-    private List <computer> computers;
+    private List <Computer> computers;
 
     /**
      *
@@ -59,11 +59,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public List<computer> getComputers() {
+    public List<Computer> getComputers() {
         return computers;
     }
 
-    public void setComputers(List<computer> computers) {
+    public void setComputers(List<Computer> computers) {
         this.computers = computers;
     }
 }
