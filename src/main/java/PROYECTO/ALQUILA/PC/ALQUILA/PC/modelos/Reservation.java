@@ -8,7 +8,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name = "reservation")
+@Table(name = "RESERVATION")
 
 public class Reservation implements Serializable {
     @Id
@@ -16,6 +16,10 @@ public class Reservation implements Serializable {
     private DateTimeFormat devolution_date;
     private DateTimeFormat star_date;
     private Integer status;
+
+    private Client client_fk;
+
+    private Computer computer_fk;
 
     /**
      *

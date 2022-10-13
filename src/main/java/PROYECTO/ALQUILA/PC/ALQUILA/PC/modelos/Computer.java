@@ -7,11 +7,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "computer")
+@Table(name = "COMPUTER")
 
 public class Computer implements Serializable  {
     @Id
-    private Integer id;
+    private Integer id_Computer;
     private String brand;
     private String description;
     private String name;
@@ -33,13 +33,13 @@ public class Computer implements Serializable  {
 
     /**
      *
-     * @param in
+     * @param id_Computer
      * @param brand
      * @param description
      * @param name
      * @param age
      */
-    public Computer(Integer in, String brand, String description, String name, Integer age){
+    public Computer(Integer id_Computer, String brand, String description, String name, Integer age){
         this.setId(getId());
         this.setBrand(brand);
         this.setDescription(description);
@@ -49,11 +49,11 @@ public class Computer implements Serializable  {
     }
 
     public Integer getId() {
-        return id;
+        return id_Computer;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_Computer = id;
     }
 
     public String getBrand() {

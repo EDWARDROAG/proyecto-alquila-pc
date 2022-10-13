@@ -9,11 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "category")
+@Table(name = "CATEGORY")
 
 public class Category implements Serializable {
     @Id
-    private Integer id;
+    private Integer id_category;
     private String description;
     private String name;
 
@@ -23,24 +23,24 @@ public class Category implements Serializable {
 
     /**
      *
-     * @param id
+     * @param id_category
      * @param description
      * @param name
      */
 
 
-    public Category(Integer id, String description, String name){
-        this.setId(id);
+    public Category(Integer id_category, String description, String name){
+        this.setId(id_category);
         this.setDescription(description);
         this.setName(name);
     }
 
     public Integer getId() {
-        return id;
+        return id_category;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_category = id_category;
     }
 
     public String getDescription() {

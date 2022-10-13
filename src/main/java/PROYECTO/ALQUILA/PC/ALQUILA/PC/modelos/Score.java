@@ -6,13 +6,15 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 @Entity
-@Table(name = "score")
+@Table(name = "SCORE")
 
 public class Score implements Serializable {
     @Id
     private Integer id_score;
     private String message;
     private Integer score;
+
+    private Reservation reservation_fk;
 
     /**
      *

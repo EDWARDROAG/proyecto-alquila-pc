@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-@Table(name = "admin")
+@Table(name = "ADMIN")
 
 public class Admin implements Serializable {
 

@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "message")
+@Table(name = "MESSAGE")
 
 public class Message implements Serializable {
     @Id
@@ -19,7 +19,7 @@ public class Message implements Serializable {
 
     private Client client_fk;
 
-    private Client computer_fk;
+    private Computer computer_fk;
 
     @ManyToOne
     @JoinColumn(name="id")
@@ -65,11 +65,11 @@ public class Message implements Serializable {
         this.client_fk = client_fk;
     }
 
-    public Client getComputer_fk() {
+    public Computer getComputer_fk() {
         return computer_fk;
     }
 
-    public void setComputer_fk(Client computer_fk) {
+    public void setComputer_fk(Computer computer_fk) {
         this.computer_fk = computer_fk;
     }
 
