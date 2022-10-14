@@ -16,6 +16,10 @@ public class RolEntity {
     public RolEntity() {
     }
 
+    public RolEntity(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

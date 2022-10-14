@@ -10,6 +10,7 @@ public interface IUserService {
     Optional<UserEntity> getById (Integer id);
 
     List<UserEntity> getList();
+    List<UserEntity> getAllByRol(Integer rolId);
 
     UserEntity update(UserEntity User);
 

@@ -1,5 +1,6 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -40,4 +41,7 @@ public class CategoryEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+
 }

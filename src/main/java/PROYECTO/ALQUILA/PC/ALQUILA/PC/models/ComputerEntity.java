@@ -1,5 +1,6 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -18,6 +19,8 @@ public class ComputerEntity {
 
     private String year;
 
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private CategoryEntity category;
 
 
     public ComputerEntity() {
@@ -69,6 +72,14 @@ public class ComputerEntity {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 }
 

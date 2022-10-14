@@ -1,5 +1,8 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
+import org.apache.catalina.Role;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -16,10 +19,15 @@ public class UserEntity {
 
     private String password;
     private String name;
+    private Integer age;
 
     @Column(unique = true)
     private String email;
-    private Integer rolId;
+
+
+
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private RolEntity rol;
 
 
     public UserEntity() {
@@ -65,11 +73,19 @@ public class UserEntity {
         this.email = email;
     }
 
-    public Integer getRolId() {
-        return rolId;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setRolId(Integer rolId) {
-        this.rolId = rolId;
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public RolEntity getRol() {
+        return rol;
+    }
+
+    public void setRol(RolEntity rol) {
+        this.rol = rol;
     }
 }

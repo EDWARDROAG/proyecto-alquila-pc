@@ -15,7 +15,8 @@ public class ScoreEntity {
 
     private Integer score;
 
-
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private ReservationEntity reservation;
 
     public ScoreEntity() {
     }
@@ -42,6 +43,14 @@ public class ScoreEntity {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public ReservationEntity getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(ReservationEntity reservation) {
+        this.reservation = reservation;
     }
 }
 

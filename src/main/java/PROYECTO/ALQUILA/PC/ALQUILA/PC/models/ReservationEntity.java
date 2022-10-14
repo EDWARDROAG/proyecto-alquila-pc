@@ -1,5 +1,7 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
+
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -14,6 +16,12 @@ public class ReservationEntity {
 
     private String status;
 
+
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private UserEntity client;
+
+    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
+    private ComputerEntity computer;
 
     public ReservationEntity() {
     }
@@ -50,6 +58,22 @@ public class ReservationEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public UserEntity getClient() {
+        return client;
+    }
+
+    public void setClient(UserEntity client) {
+        this.client = client;
+    }
+
+    public ComputerEntity getComputer() {
+        return computer;
+    }
+
+    public void setComputer(ComputerEntity computer) {
+        this.computer = computer;
     }
 }
 
