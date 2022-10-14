@@ -1,47 +1,46 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IComputerService;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class ComputerController {
+public class MessageController {
 
     @Autowired
-    IComputerService entityService;
+    IMessageService entityService;
 
 
-    @PostMapping("/Computer")
-    public ComputerEntity post(
-             @RequestBody ComputerEntity entity) {
+    @PostMapping("/Message")
+    public MessageEntity post(
+             @RequestBody MessageEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Computer")
+    @GetMapping("/Message")
 
-    public List<ComputerEntity> getAll() {
+    public List<MessageEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Computer/{id}")
-    public Optional<ComputerEntity> getById(@PathVariable("id") Integer id) {
+    @GetMapping("/Message/{id}")
+    public Optional<MessageEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Computer/{id}")
-    public ComputerEntity put(@RequestBody ComputerEntity entity,
+    @PutMapping("/Message/{id}")
+    public MessageEntity put(@RequestBody MessageEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Computer/{id}")
+    @DeleteMapping("/Message/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

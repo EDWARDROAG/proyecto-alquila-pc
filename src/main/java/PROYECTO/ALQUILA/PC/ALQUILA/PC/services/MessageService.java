@@ -1,6 +1,6 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.ComputerRepository;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -8,31 +8,31 @@ import java.util.Optional;
 
 
 @Service
-public class ComputerService implements IComputerService {
+public class MessageService implements IMessageService {
 
     @Autowired
-    ComputerRepository entityRepository;
+    MessageRepository entityRepository;
 
 
     @Override
-    public ComputerEntity add(ComputerEntity entity) {
+    public MessageEntity add(MessageEntity entity) {
         entityRepository.save(entity);
         return entity;
 
     }
 
     @Override
-    public Optional<ComputerEntity> getById(Integer id) {
+    public Optional<MessageEntity> getById(Integer id) {
         return entityRepository.findById(id);
     }
 
     @Override
-    public List<ComputerEntity> getList() {
-        return (List<ComputerEntity>) entityRepository.findAll();
+    public List<MessageEntity> getList() {
+        return (List<MessageEntity>) entityRepository.findAll();
     }
 
     @Override
-    public ComputerEntity update(ComputerEntity entity) {
+    public MessageEntity update(MessageEntity entity) {
         entityRepository.save(entity);
         return entity;
     }

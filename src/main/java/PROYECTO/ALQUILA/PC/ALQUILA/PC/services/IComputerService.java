@@ -1,9 +1,8 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
-
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
-
 import java.util.List;
 import java.util.Optional;
+
 
 public interface IComputerService {
 

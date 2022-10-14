@@ -1,47 +1,46 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IComputerService;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ScoreEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class ComputerController {
+public class ScoreController {
 
     @Autowired
-    IComputerService entityService;
+    IScoreService entityService;
 
 
-    @PostMapping("/Computer")
-    public ComputerEntity post(
-             @RequestBody ComputerEntity entity) {
+    @PostMapping("/Score")
+    public ScoreEntity post(
+             @RequestBody ScoreEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Computer")
+    @GetMapping("/Score")
 
-    public List<ComputerEntity> getAll() {
+    public List<ScoreEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Computer/{id}")
-    public Optional<ComputerEntity> getById(@PathVariable("id") Integer id) {
+    @GetMapping("/Score/{id}")
+    public Optional<ScoreEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Computer/{id}")
-    public ComputerEntity put(@RequestBody ComputerEntity entity,
+    @PutMapping("/Score/{id}")
+    public ScoreEntity put(@RequestBody ScoreEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Computer/{id}")
+    @DeleteMapping("/Score/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

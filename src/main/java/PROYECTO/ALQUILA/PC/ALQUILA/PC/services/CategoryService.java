@@ -1,10 +1,8 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
-
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.CategoryEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

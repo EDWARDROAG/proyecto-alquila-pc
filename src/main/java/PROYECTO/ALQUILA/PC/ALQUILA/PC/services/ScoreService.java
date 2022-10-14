@@ -1,38 +1,40 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.ComputerRepository;
+
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ScoreEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
-public class ComputerService implements IComputerService {
+public class ScoreService implements IScoreService {
 
     @Autowired
-    ComputerRepository entityRepository;
+    ScoreRepository entityRepository;
 
 
     @Override
-    public ComputerEntity add(ComputerEntity entity) {
+    public ScoreEntity add(ScoreEntity entity) {
         entityRepository.save(entity);
         return entity;
 
     }
 
     @Override
-    public Optional<ComputerEntity> getById(Integer id) {
+    public Optional<ScoreEntity> getById(Integer id) {
         return entityRepository.findById(id);
     }
 
     @Override
-    public List<ComputerEntity> getList() {
-        return (List<ComputerEntity>) entityRepository.findAll();
+    public List<ScoreEntity> getList() {
+        return (List<ScoreEntity>) entityRepository.findAll();
     }
 
     @Override
-    public ComputerEntity update(ComputerEntity entity) {
+    public ScoreEntity update(ScoreEntity entity) {
         entityRepository.save(entity);
         return entity;
     }

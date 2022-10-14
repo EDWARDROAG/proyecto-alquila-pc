@@ -10,22 +10,18 @@ public class ComputerEntity {
     private int id;
 
 
-    @Column(unique = true)
-    private String name;
-
-
     private String brand;
     private Integer model;
 
+    private String description;
+    private String name;
 
+    private String year;
 
 
 
     public ComputerEntity() {
     }
-
-
-
 
     public int getId() {
         return id;
@@ -58,4 +54,21 @@ public class ComputerEntity {
     public void setModel(Integer model) {
         this.model = model;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
 }
+

@@ -16,6 +16,8 @@ public class UserEntity {
 
     private String password;
     private String name;
+
+    @Column(unique = true)
     private String email;
     private Integer rolId;
 
