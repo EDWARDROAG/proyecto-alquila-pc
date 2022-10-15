@@ -15,32 +15,32 @@ public class ReservationController {
     IReservationService entityService;
 
 
-    @PostMapping("/Reservation")
+    @PostMapping("/api/Reservation/save")
     public ReservationEntity post(
              @RequestBody ReservationEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Reservation")
+    @GetMapping("/api/Reservation/all")
 
     public List<ReservationEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Reservation/{id}")
+    @GetMapping("/api/Reservation/{id}")
     public Optional<ReservationEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Reservation/{id}")
+    @PutMapping("/api/Reservation/{id}")
     public ReservationEntity put(@RequestBody ReservationEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Reservation/{id}")
+    @DeleteMapping("/api/Reservation/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

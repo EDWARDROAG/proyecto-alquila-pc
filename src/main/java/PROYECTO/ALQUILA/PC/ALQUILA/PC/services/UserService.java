@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class UserService implements IUserService {
 
@@ -20,22 +19,10 @@ public class UserService implements IUserService {
     @Autowired
     RolRepository rolRepository;
 
-
     @Override
     public UserEntity add(UserEntity entity) {
-
-        try {
-            Optional<RolEntity> r = rolRepository.findById(entity.getRol().getId());
-
-            if (!r.isPresent()) {
-                throw new Exception("Rol is mandatory");
-            }
-            entity.setRol(r.get());
-            entityRepository.save(entity);
-            return entity;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        entityRepository.save(entity);
+        return entity;
     }
 
     @Override

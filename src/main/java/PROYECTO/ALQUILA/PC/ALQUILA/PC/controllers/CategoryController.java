@@ -16,32 +16,32 @@ public class CategoryController {
     ICategoryService entityService;
 
 
-    @PostMapping("/Category")
+    @PostMapping("/api/Category/save")
     public CategoryEntity post(
              @RequestBody CategoryEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Category")
+    @GetMapping("/api/Category/all")
 
     public List<CategoryEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Category/{id}")
+    @GetMapping("/api/Category/{id}")
     public Optional<CategoryEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Category/{id}")
+    @PutMapping("/api/Category/{id}")
     public CategoryEntity put(@RequestBody CategoryEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Category/{id}")
+    @DeleteMapping("/api/Category/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

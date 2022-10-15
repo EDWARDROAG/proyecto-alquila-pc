@@ -25,6 +25,12 @@ public class ReservationEntity {
 
     public ReservationEntity() {
     }
+    
+
+    public ReservationEntity(int id) {
+        this.id = id;
+    }
+
 
     public int getId() {
 

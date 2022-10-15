@@ -15,32 +15,32 @@ public class ScoreController {
     IScoreService entityService;
 
 
-    @PostMapping("/Score")
+    @PostMapping("/api/Score/save")
     public ScoreEntity post(
              @RequestBody ScoreEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Score")
+    @GetMapping("/api/Score/all")
 
     public List<ScoreEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Score/{id}")
+    @GetMapping("/api/Score/{id}")
     public Optional<ScoreEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Score/{id}")
+    @PutMapping("/api/Score/{id}")
     public ScoreEntity put(@RequestBody ScoreEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Score/{id}")
+    @DeleteMapping("/api/Score/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

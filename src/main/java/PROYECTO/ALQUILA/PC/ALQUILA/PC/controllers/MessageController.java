@@ -15,32 +15,32 @@ public class MessageController {
     IMessageService entityService;
 
 
-    @PostMapping("/Message")
+    @PostMapping("/api/Message/save")
     public MessageEntity post(
              @RequestBody MessageEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Message")
+    @GetMapping("/api/Message/all")
 
     public List<MessageEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Message/{id}")
+    @GetMapping("/api/Message/{id}")
     public Optional<MessageEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Message/{id}")
+    @PutMapping("/api/Message/{id}")
     public MessageEntity put(@RequestBody MessageEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Message/{id}")
+    @DeleteMapping("/api/Message/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

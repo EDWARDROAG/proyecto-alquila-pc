@@ -15,32 +15,32 @@ public class RolController {
     IRolService entityService;
 
 
-    @PostMapping("/Rol")
+    @PostMapping("/api/Rol/save")
     public RolEntity post(
              @RequestBody RolEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Rol")
+    @GetMapping("/api/Rol/all")
 
     public List<RolEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Rol/{id}")
+    @GetMapping("/api/Rol/{id}")
     public Optional<RolEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Rol/{id}")
+    @PutMapping("/api/Rol/{id}")
     public RolEntity put(@RequestBody RolEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Rol/{id}")
+    @DeleteMapping("/api/Rol/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

@@ -32,7 +32,9 @@ public class UserEntity {
 
     public UserEntity() {
     }
-
+    public UserEntity(int id) {
+        this.id = id;
+    }
     public int getId() {
         return id;
     }

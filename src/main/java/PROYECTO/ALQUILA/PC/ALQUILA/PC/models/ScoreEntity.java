@@ -20,6 +20,10 @@ public class ScoreEntity {
 
     public ScoreEntity() {
     }
+    public ScoreEntity(int id) {
+        this.id = id;
+    }
+
 
     public int getId() {
         return id;

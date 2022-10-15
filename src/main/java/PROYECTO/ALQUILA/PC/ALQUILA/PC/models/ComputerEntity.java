@@ -25,6 +25,12 @@ public class ComputerEntity {
 
     public ComputerEntity() {
     }
+    
+
+    public ComputerEntity(int id) {
+        this.id = id;
+    }
+
 
     public int getId() {
         return id;

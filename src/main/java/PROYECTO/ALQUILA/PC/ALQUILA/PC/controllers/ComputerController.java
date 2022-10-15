@@ -16,32 +16,32 @@ public class ComputerController {
     IComputerService entityService;
 
 
-    @PostMapping("/Computer")
+    @PostMapping("/api/Computer/save")
     public ComputerEntity post(
              @RequestBody ComputerEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/Computer")
+    @GetMapping("/api/Computer/all")
 
     public List<ComputerEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/Computer/{id}")
+    @GetMapping("/api/Computer/{id}")
     public Optional<ComputerEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/Computer/{id}")
+    @PutMapping("/api/Computer/{id}")
     public ComputerEntity put(@RequestBody ComputerEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/Computer/{id}")
+    @DeleteMapping("/api/Computer/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);

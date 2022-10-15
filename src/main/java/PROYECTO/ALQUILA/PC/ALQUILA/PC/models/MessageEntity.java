@@ -25,6 +25,12 @@ public class MessageEntity {
     public MessageEntity() {
     }
 
+    
+    public MessageEntity(int id) {
+        this.id = id;
+    }
+
+
     public int getId() {
         return id;
     }

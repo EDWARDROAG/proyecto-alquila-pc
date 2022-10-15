@@ -14,32 +14,32 @@ public class UserController {
     IUserService entityService;
 
 
-    @PostMapping("/User")
+    @PostMapping("/api/User/save")
     public UserEntity post(
              @RequestBody UserEntity entity) {
         return entityService.add(entity);
     }
 
-    @GetMapping("/User")
+    @GetMapping("/api/User/all")
 
     public List<UserEntity> getAll() {
         return entityService.getList();
     }
 
-    @GetMapping("/User/{id}")
+    @GetMapping("/api/User/{id}")
     public Optional<UserEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/User/{id}")
+    @PutMapping("/api/User/{id}")
     public UserEntity put(@RequestBody UserEntity entity,
                               @PathVariable("id") Integer id) {
 
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/User/{id}")
+    @DeleteMapping("/api/User/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);
