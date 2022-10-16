@@ -18,16 +18,20 @@ public class AlquilaPcApplication {
     }
 
 
-    @Configuration
-    @EnableWebMvc
-    public class WebConfig extends WebMvcConfigurerAdapter {
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/api/**")
-                    .allowedOrigins("*")
-                    .allowedMethods("PUT", "DELETE","GET", "POST", "PATCH", "OPTIONS", "HEAD")
-                    .allowCredentials(false).maxAge(3600);
-        }
+
+
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/api/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("PUT", "DELETE","GET", "POST", "PATCH", "OPTIONS", "HEAD")
+                        .allowCredentials(false).maxAge(3600);
+            }
+        };
     }
 
 }
