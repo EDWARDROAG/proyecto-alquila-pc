@@ -1,7 +1,11 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.RolEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IUserService;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +18,6 @@ public class UserController {
     IUserService entityService;
 
 
-    @PostMapping("/api/User/save")
-    public UserEntity post(
-             @RequestBody UserEntity entity) {
-        return entityService.add(entity);
-    }
 
     @GetMapping("/api/User/all")
 
@@ -31,11 +30,19 @@ public class UserController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/User/save")
+    public ResponseEntity<?> post(
+            @RequestBody UserEntity entity) {
+
+        UserEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
 
     @PutMapping("/api/User/update")
-    public UserEntity put(@RequestBody UserEntity entity) {
+    public ResponseEntity<?> put(@RequestBody UserEntity entity) {
 
-        return entityService.update(entity);
+        UserEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/User/{id}")

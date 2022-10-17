@@ -4,6 +4,8 @@ import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IUserService;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +18,7 @@ public class ClietController {
     IUserService entityService;
 
 
-    @PostMapping("/api/Client/save")
-    public UserEntity post(
-             @RequestBody UserEntity entity) {
 
-        entity.setRol(new RolEntity(Roles.Client.ordinal()));
-        return entityService.add(entity);
-    }
 
     @GetMapping("/api/Client/all")
 
@@ -35,11 +31,19 @@ public class ClietController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Client/save")
+    public ResponseEntity<?> post(
+            @RequestBody UserEntity entity) {
 
-    @PutMapping("/api/Client/update")
-    public UserEntity put(@RequestBody UserEntity entity) {
         entity.setRol(new RolEntity(Roles.Client.ordinal()));
-        return entityService.update(entity);
+        UserEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
+    @PutMapping("/api/Client/update")
+    public ResponseEntity<?> put(@RequestBody UserEntity entity) {
+        entity.setRol(new RolEntity(Roles.Client.ordinal()));
+        UserEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Client/{id}")

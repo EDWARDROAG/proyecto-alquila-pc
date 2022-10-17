@@ -3,6 +3,8 @@ package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +17,7 @@ public class MessageController {
     IMessageService entityService;
 
 
-    @PostMapping("/api/Message/save")
-    public MessageEntity post(
-             @RequestBody MessageEntity entity) {
-        return entityService.add(entity);
-    }
+
 
     @GetMapping("/api/Message/all")
 
@@ -32,11 +30,18 @@ public class MessageController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Message/save")
+    public ResponseEntity<?> post(
+            @RequestBody MessageEntity entity) {
 
+        MessageEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
     @PutMapping("/api/Message/update")
-    public MessageEntity put(@RequestBody MessageEntity entity) {
+    public ResponseEntity<?> put(@RequestBody MessageEntity entity) {
 
-        return entityService.update(entity);
+        MessageEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Message/{id}")

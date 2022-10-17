@@ -4,6 +4,8 @@ import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.CategoryEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.ICategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,11 +18,7 @@ public class CategoryController {
     ICategoryService entityService;
 
 
-    @PostMapping("/api/Category/save")
-    public CategoryEntity post(
-             @RequestBody CategoryEntity entity) {
-        return entityService.add(entity);
-    }
+
 
     @GetMapping("/api/Category/all")
 
@@ -33,11 +31,18 @@ public class CategoryController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Category/save")
+    public ResponseEntity<?> post(
+            @RequestBody CategoryEntity entity) {
 
+        CategoryEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
     @PutMapping("/api/Category/update")
-    public CategoryEntity put(@RequestBody CategoryEntity entity) {
+    public ResponseEntity<?> put(@RequestBody CategoryEntity entity) {
 
-        return entityService.update(entity);
+        CategoryEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Category/{id}")

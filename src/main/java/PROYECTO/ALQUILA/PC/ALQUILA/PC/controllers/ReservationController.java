@@ -2,8 +2,9 @@ package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IReservationService;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.ReservationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +17,7 @@ public class ReservationController {
     IReservationService entityService;
 
 
-    @PostMapping("/api/Reservation/save")
-    public ReservationEntity post(
-             @RequestBody ReservationEntity entity) {
 
-        return entityService.add(entity);
-    }
 
     @GetMapping("/api/Reservation/all")
 
@@ -34,11 +30,19 @@ public class ReservationController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Reservation/save")
+    public ResponseEntity<?> post(
+            @RequestBody ReservationEntity entity) {
+
+        ReservationEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
 
     @PutMapping("/api/Reservation/update")
-    public ReservationEntity put(@RequestBody ReservationEntity entity) {
+    public ResponseEntity<?> put(@RequestBody ReservationEntity entity) {
 
-        return entityService.update(entity);
+        ReservationEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Reservation/{id}")

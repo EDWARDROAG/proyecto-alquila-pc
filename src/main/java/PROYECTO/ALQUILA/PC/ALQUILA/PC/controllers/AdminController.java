@@ -4,6 +4,8 @@ import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IUserService;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +18,7 @@ public class AdminController {
     IUserService entityService;
 
 
-    @PostMapping("/api/Admin/save")
-    public UserEntity post(
-             @RequestBody UserEntity entity) {
 
-        entity.setRol(new RolEntity(Roles.Admin.ordinal()));
-        return entityService.add(entity);
-    }
 
     @GetMapping("/api/Admin/all")
 
@@ -35,11 +31,21 @@ public class AdminController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Admin/save")
+    public ResponseEntity<?> post(
+            @RequestBody UserEntity entity) {
+
+        entity.setRol(new RolEntity(Roles.Admin.ordinal()));
+        UserEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
 
     @PutMapping("/api/Admin/update")
-    public UserEntity put(@RequestBody UserEntity entity) {
+    public ResponseEntity<?> put(@RequestBody UserEntity entity) {
         entity.setRol(new RolEntity(Roles.Admin.ordinal()));
-        return entityService.update(entity);
+
+        UserEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Admin/{id}")

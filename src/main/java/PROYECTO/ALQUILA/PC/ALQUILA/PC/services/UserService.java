@@ -1,6 +1,5 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
 
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.RolEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.RolRepository;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.UserRepository;

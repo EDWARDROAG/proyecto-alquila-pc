@@ -3,6 +3,8 @@ package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.RolEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IRolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +17,7 @@ public class RolController {
     IRolService entityService;
 
 
-    @PostMapping("/api/Rol/save")
-    public RolEntity post(
-             @RequestBody RolEntity entity) {
-        return entityService.add(entity);
-    }
+
 
     @GetMapping("/api/Rol/all")
 
@@ -32,11 +30,18 @@ public class RolController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Rol/save")
+    public ResponseEntity<?> post(
+            @RequestBody RolEntity entity) {
 
+        RolEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
     @PutMapping("/api/Rol/update")
-    public RolEntity put(@RequestBody RolEntity entity) {
+    public ResponseEntity<?> put(@RequestBody RolEntity entity) {
 
-        return entityService.update(entity);
+        RolEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Rol/{id}")

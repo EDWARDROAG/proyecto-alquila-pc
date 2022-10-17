@@ -3,6 +3,8 @@ package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,11 +18,7 @@ public class ComputerController {
     IComputerService entityService;
 
 
-    @PostMapping("/api/Computer/save")
-    public ComputerEntity post(
-             @RequestBody ComputerEntity entity) {
-        return entityService.add(entity);
-    }
+
 
     @GetMapping("/api/Computer/all")
 
@@ -33,11 +31,19 @@ public class ComputerController {
         return entityService.getById(id);
     }
 
+    @PostMapping("/api/Computer/save")
+    public ResponseEntity<?> post(
+            @RequestBody ComputerEntity entity) {
+
+        ComputerEntity RestModel= entityService.add(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+    }
 
     @PutMapping("/api/Computer/update")
-    public ComputerEntity put(@RequestBody ComputerEntity entity) {
+    public ResponseEntity<?> put(@RequestBody ComputerEntity entity) {
 
-        return entityService.update(entity);
+        ComputerEntity RestModel= entityService.update(entity);
+        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Computer/{id}")
