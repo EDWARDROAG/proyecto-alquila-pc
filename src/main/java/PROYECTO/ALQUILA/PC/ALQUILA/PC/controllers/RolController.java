@@ -33,9 +33,8 @@ public class RolController {
     }
 
 
-    @PutMapping("/api/Rol/{id}")
-    public RolEntity put(@RequestBody RolEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/Rol/update")
+    public RolEntity put(@RequestBody RolEntity entity) {
 
         return entityService.update(entity);
     }

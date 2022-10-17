@@ -34,9 +34,8 @@ public class ComputerController {
     }
 
 
-    @PutMapping("/api/Computer/{id}")
-    public ComputerEntity put(@RequestBody ComputerEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/Computer/update")
+    public ComputerEntity put(@RequestBody ComputerEntity entity) {
 
         return entityService.update(entity);
     }

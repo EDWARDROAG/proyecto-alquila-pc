@@ -33,9 +33,8 @@ public class MessageController {
     }
 
 
-    @PutMapping("/api/Message/{id}")
-    public MessageEntity put(@RequestBody MessageEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/Message/update")
+    public MessageEntity put(@RequestBody MessageEntity entity) {
 
         return entityService.update(entity);
     }

@@ -36,9 +36,8 @@ public class ScoreController {
     }
 
 
-    @PutMapping("/api/Score/{id}")
-    public ScoreEntity put(@RequestBody ScoreEntity entity,
-                              @PathVariable("id") Integer id) throws Exception {
+    @PutMapping("/api/Score/update")
+    public ScoreEntity put(@RequestBody ScoreEntity entity) throws Exception {
         if(entity.getScore()>5 || entity.getScore()<1){
             throw new Exception("el score es invalido");
         }

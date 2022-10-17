@@ -37,8 +37,7 @@ public class AdminController {
 
 
     @PutMapping("/api/Admin/update")
-    public UserEntity put(@RequestBody UserEntity entity
-                             ) {
+    public UserEntity put(@RequestBody UserEntity entity) {
         entity.setRol(new RolEntity(Roles.Admin.ordinal()));
         return entityService.update(entity);
     }

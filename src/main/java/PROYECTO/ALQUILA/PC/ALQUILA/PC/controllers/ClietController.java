@@ -36,9 +36,8 @@ public class ClietController {
     }
 
 
-    @PutMapping("/api/Client/{id}")
-    public UserEntity put(@RequestBody UserEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/Client/update")
+    public UserEntity put(@RequestBody UserEntity entity) {
         entity.setRol(new RolEntity(Roles.Client.ordinal()));
         return entityService.update(entity);
     }

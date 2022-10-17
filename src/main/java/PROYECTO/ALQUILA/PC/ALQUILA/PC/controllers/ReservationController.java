@@ -35,9 +35,8 @@ public class ReservationController {
     }
 
 
-    @PutMapping("/api/Reservation/{id}")
-    public ReservationEntity put(@RequestBody ReservationEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/Reservation/update")
+    public ReservationEntity put(@RequestBody ReservationEntity entity) {
 
         return entityService.update(entity);
     }

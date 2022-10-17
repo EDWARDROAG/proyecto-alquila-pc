@@ -32,9 +32,8 @@ public class UserController {
     }
 
 
-    @PutMapping("/api/User/{id}")
-    public UserEntity put(@RequestBody UserEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/User/update")
+    public UserEntity put(@RequestBody UserEntity entity) {
 
         return entityService.update(entity);
     }

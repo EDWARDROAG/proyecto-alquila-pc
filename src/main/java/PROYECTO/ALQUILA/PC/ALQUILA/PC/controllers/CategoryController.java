@@ -34,9 +34,8 @@ public class CategoryController {
     }
 
 
-    @PutMapping("/api/Category/{id}")
-    public CategoryEntity put(@RequestBody CategoryEntity entity,
-                              @PathVariable("id") Integer id) {
+    @PutMapping("/api/Category/update")
+    public CategoryEntity put(@RequestBody CategoryEntity entity) {
 
         return entityService.update(entity);
     }
