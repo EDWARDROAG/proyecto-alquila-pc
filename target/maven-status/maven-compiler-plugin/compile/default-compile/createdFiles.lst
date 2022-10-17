@@ -1,0 +1,11 @@
+PROYECTO\ALQUILA\PC\ALQUILA\PC\models\MessageEntity.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\services\ComputerService.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\models\RolEntity.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\models\UserEntity.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\models\CategoryEntity.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\repository\ComputerRepository.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\services\IMessageService.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\repository\RolRepository.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\controllers\ComputerController.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\models\ComputerEntity.class
+PROYECTO\ALQUILA\PC\ALQUILA\PC\services\IComputerService.class
