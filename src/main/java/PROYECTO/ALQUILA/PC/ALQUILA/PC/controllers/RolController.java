@@ -21,33 +21,57 @@ public class RolController {
 
     @GetMapping("/api/Rol/all")
 
-    public List<RolEntity> getAll() {
-        return entityService.getList();
+    public ResponseEntity<?> getAll() {
+        try {
+            List<RolEntity> list= entityService.getList();
+            return  new ResponseEntity<>(list, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/api/Rol/{id}")
-    public Optional<RolEntity> getById(@PathVariable("id") Integer id) {
-        return entityService.getById(id);
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
+
+        try {
+            Optional<RolEntity> entity= entityService.getById(id);
+            return  new ResponseEntity<>(entity, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/api/Rol/save")
     public ResponseEntity<?> post(
             @RequestBody RolEntity entity) {
+        try {
+            RolEntity RestModel= entityService.add(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
-        RolEntity RestModel= entityService.add(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
     @PutMapping("/api/Rol/update")
     public ResponseEntity<?> put(@RequestBody RolEntity entity) {
+        try {
+            RolEntity RestModel= entityService.update(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
-        RolEntity RestModel= entityService.update(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Rol/{id}")
 
-    public String delete(@PathVariable("id")Integer id) {
-        entityService.delete(id);
-        return "Deleted Successfully";
+    public ResponseEntity<?> delete(@PathVariable("id")Integer id) {
+        try {
+            entityService.delete(id);
+            return  new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

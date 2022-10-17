@@ -17,41 +17,63 @@ public class AdminController {
     @Autowired
     IUserService entityService;
 
-
-
-
     @GetMapping("/api/Admin/all")
-
-    public List<UserEntity> getAll() {
-        return entityService.getAllByRol(Roles.Admin.ordinal());
+    public ResponseEntity<?> getAll() {
+       try {
+           List<UserEntity> list= entityService.getAllByRol(Roles.Admin.ordinal());
+           return  new ResponseEntity<>(list, HttpStatus.OK);
+       }catch (Exception ex){
+           return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+       }
     }
 
     @GetMapping("/api/Admin/{id}")
-    public Optional<UserEntity> getById(@PathVariable("id") Integer id) {
-        return entityService.getById(id);
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
+
+        try {
+            Optional<UserEntity> entity= entityService.getById(id);
+            return  new ResponseEntity<>(entity, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/api/Admin/save")
     public ResponseEntity<?> post(
             @RequestBody UserEntity entity) {
 
-        entity.setRol(new RolEntity(Roles.Admin.ordinal()));
-        UserEntity RestModel= entityService.add(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        try {
+            entity.setRol(new RolEntity(Roles.Admin.ordinal()));
+            UserEntity RestModel= entityService.add(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+
     }
 
     @PutMapping("/api/Admin/update")
     public ResponseEntity<?> put(@RequestBody UserEntity entity) {
-        entity.setRol(new RolEntity(Roles.Admin.ordinal()));
 
-        UserEntity RestModel= entityService.update(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+
+        try {
+            entity.setRol(new RolEntity(Roles.Admin.ordinal()));
+            UserEntity RestModel= entityService.update(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/api/Admin/{id}")
 
-    public String delete(@PathVariable("id")Integer id) {
-        entityService.delete(id);
-        return "Deleted Successfully";
+    public ResponseEntity<?> delete(@PathVariable("id")Integer id) {
+        try {
+            entityService.delete(id);
+            return  new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

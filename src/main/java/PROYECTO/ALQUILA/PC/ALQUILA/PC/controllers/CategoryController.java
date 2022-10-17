@@ -22,33 +22,62 @@ public class CategoryController {
 
     @GetMapping("/api/Category/all")
 
-    public List<CategoryEntity> getAll() {
-        return entityService.getList();
+    public ResponseEntity<?> getAll() {
+
+        try {
+            List<CategoryEntity> list= entityService.getList();
+            return  new ResponseEntity<>(list, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/api/Category/{id}")
-    public Optional<CategoryEntity> getById(@PathVariable("id") Integer id) {
-        return entityService.getById(id);
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
+
+
+        try {
+            Optional<CategoryEntity> entity= entityService.getById(id);
+            return  new ResponseEntity<>(entity, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/api/Category/save")
     public ResponseEntity<?> post(
             @RequestBody CategoryEntity entity) {
 
-        CategoryEntity RestModel= entityService.add(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+
+
+        try {
+            CategoryEntity RestModel= entityService.add(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     @PutMapping("/api/Category/update")
     public ResponseEntity<?> put(@RequestBody CategoryEntity entity) {
 
-        CategoryEntity RestModel= entityService.update(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+
+
+        try {
+            CategoryEntity RestModel= entityService.update(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/api/Category/{id}")
 
-    public String delete(@PathVariable("id")Integer id) {
-        entityService.delete(id);
-        return "Deleted Successfully";
+    public ResponseEntity<?> delete(@PathVariable("id")Integer id) {
+        try {
+            entityService.delete(id);
+            return  new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

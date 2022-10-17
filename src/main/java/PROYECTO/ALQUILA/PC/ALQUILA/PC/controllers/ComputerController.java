@@ -22,34 +22,58 @@ public class ComputerController {
 
     @GetMapping("/api/Computer/all")
 
-    public List<ComputerEntity> getAll() {
-        return entityService.getList();
+    public ResponseEntity<?> getAll() {
+
+        try {
+            List<ComputerEntity> list= entityService.getList();
+            return  new ResponseEntity<>(list, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/api/Computer/{id}")
-    public Optional<ComputerEntity> getById(@PathVariable("id") Integer id) {
-        return entityService.getById(id);
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
+
+        try {
+            Optional<ComputerEntity> entity= entityService.getById(id);
+            return  new ResponseEntity<>(entity, HttpStatus.OK);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/api/Computer/save")
     public ResponseEntity<?> post(
             @RequestBody ComputerEntity entity) {
+        try {
+            ComputerEntity RestModel= entityService.add(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
-        ComputerEntity RestModel= entityService.add(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @PutMapping("/api/Computer/update")
     public ResponseEntity<?> put(@RequestBody ComputerEntity entity) {
+        try {
+            ComputerEntity RestModel= entityService.update(entity);
+            return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
-        ComputerEntity RestModel= entityService.update(entity);
-        return  new ResponseEntity<>(RestModel, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/Computer/{id}")
 
-    public String delete(@PathVariable("id")Integer id) {
-        entityService.delete(id);
-        return "Deleted Successfully";
+    public ResponseEntity<?> delete(@PathVariable("id")Integer id) {
+        try {
+            entityService.delete(id);
+            return  new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }catch (Exception ex){
+            return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
