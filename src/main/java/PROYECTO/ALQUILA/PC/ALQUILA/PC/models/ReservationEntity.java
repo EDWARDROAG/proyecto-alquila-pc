@@ -1,6 +1,12 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
 
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.ReservationStatus;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+
+
+import java.sql.Date;
 import java.util.Set;
 
 
@@ -11,10 +17,13 @@ public class ReservationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String devolution_date;
-    private String start_date;
+    private java.sql.Date devolution_date;
 
-    private String status;
+    @Column(nullable=false)
+    private java.sql.Date start_date=new Date(System.currentTimeMillis());
+
+    @Column(nullable=false)
+    private ReservationStatus status=ReservationStatus.Programmed;
 
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -41,28 +50,28 @@ public class ReservationEntity {
         this.id = id;
     }
 
-    public String getDevolution_date() {
+    public java.sql.Date getDevolution_date() {
         return devolution_date;
     }
 
-    public void setDevolution_date(String devolution_date) {
+    public void setDevolution_date(java.sql.Date devolution_date) {
         this.devolution_date = devolution_date;
     }
 
 
-    public String getStart_date() {
+    public java.sql.Date getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(String start_date) {
+    public void setStart_date(java.sql.Date start_date) {
         this.start_date = start_date;
     }
 
-    public String getStatus() {
+    public ReservationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(ReservationStatus status) {
         this.status = status;
     }
 

@@ -1,5 +1,7 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 
 @Entity
@@ -13,6 +15,8 @@ public class ScoreEntity {
 
     private String message;
 
+    @Min(1)
+    @Max(5)
     private Integer score;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)

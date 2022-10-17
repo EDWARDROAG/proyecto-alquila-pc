@@ -17,7 +17,10 @@ public class ScoreController {
 
     @PostMapping("/api/Score/save")
     public ScoreEntity post(
-             @RequestBody ScoreEntity entity) {
+             @RequestBody ScoreEntity entity) throws Exception {
+        if(entity.getScore()>5 || entity.getScore()<1){
+            throw new Exception("el score es invalido");
+        }
         return entityService.add(entity);
     }
 
@@ -35,8 +38,10 @@ public class ScoreController {
 
     @PutMapping("/api/Score/{id}")
     public ScoreEntity put(@RequestBody ScoreEntity entity,
-                              @PathVariable("id") Integer id) {
-
+                              @PathVariable("id") Integer id) throws Exception {
+        if(entity.getScore()>5 || entity.getScore()<1){
+            throw new Exception("el score es invalido");
+        }
         return entityService.update(entity);
     }
 

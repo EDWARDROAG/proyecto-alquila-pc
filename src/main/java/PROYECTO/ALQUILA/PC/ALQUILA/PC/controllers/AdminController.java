@@ -10,40 +10,40 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class ClietController {
+public class AdminController {
 
     @Autowired
     IUserService entityService;
 
 
-    @PostMapping("/api/Client/save")
+    @PostMapping("/api/Admin/save")
     public UserEntity post(
              @RequestBody UserEntity entity) {
 
-        entity.setRol(new RolEntity(Roles.Client.ordinal()));
+        entity.setRol(new RolEntity(Roles.Admin.ordinal()));
         return entityService.add(entity);
     }
 
-    @GetMapping("/api/Client/all")
+    @GetMapping("/api/Admin/all")
 
     public List<UserEntity> getAll() {
-        return entityService.getAllByRol(Roles.Client.ordinal());
+        return entityService.getAllByRol(Roles.Admin.ordinal());
     }
 
-    @GetMapping("/api/Client/{id}")
+    @GetMapping("/api/Admin/{id}")
     public Optional<UserEntity> getById(@PathVariable("id") Integer id) {
         return entityService.getById(id);
     }
 
 
-    @PutMapping("/api/Client/{id}")
-    public UserEntity put(@RequestBody UserEntity entity,
-                              @PathVariable("id") Integer id) {
-        entity.setRol(new RolEntity(Roles.Client.ordinal()));
+    @PutMapping("/api/Admin/update")
+    public UserEntity put(@RequestBody UserEntity entity
+                             ) {
+        entity.setRol(new RolEntity(Roles.Admin.ordinal()));
         return entityService.update(entity);
     }
 
-    @DeleteMapping("/api/Client/{id}")
+    @DeleteMapping("/api/Admin/{id}")
 
     public String delete(@PathVariable("id")Integer id) {
         entityService.delete(id);
