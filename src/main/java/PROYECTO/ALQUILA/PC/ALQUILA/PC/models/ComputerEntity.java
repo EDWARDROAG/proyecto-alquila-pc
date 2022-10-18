@@ -14,15 +14,16 @@ public class ComputerEntity {
 
 
     private String brand;
-
-
-    private String description;
-    private String name;
-
     private String year;
-
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private CategoryEntity category;
+    private String name;
+    private String description;
+
+
+
+
+
 
 
     @OneToMany()

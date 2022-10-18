@@ -17,8 +17,8 @@ public class ClientDto {
 
 
     private String email;
-    private Integer age;
     private String password;
+    private Integer age;
 
 
 
@@ -37,8 +37,8 @@ public class ClientDto {
         this.idClient = idClient;
         this.name = name;
         this.email = email;
-        this.age = age;
         this.password = password;
+        this.age = age;
         this.messages = messages;
         this.reservations = reservations;
     }

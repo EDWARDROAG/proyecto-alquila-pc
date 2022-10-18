@@ -13,19 +13,14 @@ import java.util.List;
 
 public class ReservationDto {
     private int idReservation;
-
-    private Date devolutionDate;
-
     private Date startDate =new Date();
-
-
+    private Date devolutionDate;
 
     private ReservationStatus status=ReservationStatus.Programmed;
 
-
+    private ComputerEntity computer;
     private ClientDto client;
 
-    private ComputerEntity computer;
 
     private List<ScoreEntity> score=new ArrayList<ScoreEntity>();
 

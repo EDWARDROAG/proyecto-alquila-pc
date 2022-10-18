@@ -17,13 +17,11 @@ public class ReservationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idReservation;
-
-    private java.util.Date devolutionDate;
-
     @Column(nullable=false)
     private java.util.Date startDate =new Date();
+    private java.util.Date devolutionDate;
 
-    @Column(nullable=false)
+     @Column(nullable=false)
     private ReservationStatus status=ReservationStatus.Programmed;
 
 
@@ -41,8 +39,8 @@ public class ReservationEntity {
 
     public ReservationEntity(int idReservation, Date devolution_date, Date start_date, ReservationStatus status, UserEntity client, ComputerEntity computer) {
         this.idReservation = idReservation;
-        this.devolutionDate = devolution_date;
         this.startDate = start_date;
+        this.devolutionDate = devolution_date;
         this.status = status;
         this.client = client;
         this.computer = computer;

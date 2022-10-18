@@ -23,8 +23,9 @@ public class UserEntity {
 
     @Column(unique = true)
     private String email;
-    private Integer age;
     private String password;
+    private Integer age;
+
 
 
 
@@ -45,8 +46,8 @@ public class UserEntity {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.age = age;
         this.password = password;
+        this.age = age;
         this.rol = rol;
     }
 

@@ -12,12 +12,12 @@ public class MessageEntity {
 
 
     private String message_text;
+    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
+    private UserEntity client;
 
     @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private ComputerEntity computer;
 
-    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
-    private UserEntity client;
 
 
 
@@ -27,8 +27,9 @@ public class MessageEntity {
     public MessageEntity(int idMessage, String message_text, ComputerEntity computer, UserEntity client) {
         this.idMessage = idMessage;
         this.message_text = message_text;
-        this.computer = computer;
         this.client = client;
+        this.computer = computer;
+
     }
 
     public MessageEntity(int id) {

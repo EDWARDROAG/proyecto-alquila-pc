@@ -11,17 +11,18 @@ public class MessageDto {
 
 
     private String message_text;
-
+    private ClientDto client;
     private ComputerEntity computer;
 
-    private ClientDto client;
+
 
 
     public MessageDto(int idMessage, String message_text, ComputerEntity computer, ClientDto client) {
         this.idMessage = idMessage;
         this.message_text = message_text;
-        this.computer = computer;
         this.client = client;
+        this.computer = computer;
+
     }
 
     public MessageDto() {
