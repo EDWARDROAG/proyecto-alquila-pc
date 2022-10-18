@@ -1,40 +1,31 @@
-package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
+package PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto;
+
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
 
 import javax.persistence.*;
 
 
-@Entity
-@Table(name = "MESSAGE")
-public class MessageEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class MessageDto {
     private int idMessage;
 
 
     private String message_text;
 
-    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private ComputerEntity computer;
 
-    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
-    private UserEntity client;
+    private ClientDto client;
 
 
-
-    public MessageEntity() {
-    }
-
-    public MessageEntity(int idMessage, String message_text, ComputerEntity computer, UserEntity client) {
+    public MessageDto(int idMessage, String message_text, ComputerEntity computer, ClientDto client) {
         this.idMessage = idMessage;
         this.message_text = message_text;
         this.computer = computer;
         this.client = client;
     }
 
-    public MessageEntity(int id) {
-        this.idMessage = id;
+    public MessageDto() {
     }
-
 
     public int getIdMessage() {
         return idMessage;
@@ -60,11 +51,11 @@ public class MessageEntity {
         this.computer = computer;
     }
 
-    public UserEntity getClient() {
+    public ClientDto getClient() {
         return client;
     }
 
-    public void setClient(UserEntity client) {
+    public void setClient(ClientDto client) {
         this.client = client;
     }
 }

@@ -129,3 +129,6 @@ La terminal te preguntará tu usuario y contraseña (En el caso de la contraseñ
 ¡Felicitaciones, acabas de subir tu primer git commit!
 
 hola a todos
+
+
+ ssh -i ssh-key-2022-10-05.key opc@140.238.152.178

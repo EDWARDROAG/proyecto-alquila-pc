@@ -1,4 +1,5 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface IReservationService {
     ReservationEntity update(ReservationEntity Reservation);
 
     void delete(Integer id);
+
+    List<ReservationEntity> getListByClient(Integer clientId);
 }
 
 

@@ -1,60 +1,48 @@
-package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
+package PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto;
+
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ScoreEntity;
 
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.ReservationStatus;
-
-
-import javax.persistence.*;
-
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-@Entity
-@Table(name = "RESERVATION")
-public class ReservationEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class ReservationDto {
     private int idReservation;
 
-    private java.util.Date devolutionDate;
+    private Date devolutionDate;
 
-    @Column(nullable=false)
-    private java.util.Date startDate =new Date();
+    private Date startDate =new Date();
 
-    @Column(nullable=false)
+
+
     private ReservationStatus status=ReservationStatus.Programmed;
 
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private UserEntity client;
+    private ClientDto client;
 
-    @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private ComputerEntity computer;
 
-    @OneToMany()
     private List<ScoreEntity> score=new ArrayList<ScoreEntity>();
 
-    public ReservationEntity() {
+    public ReservationDto() {
     }
 
-    public ReservationEntity(int idReservation, Date devolution_date, Date start_date, ReservationStatus status, UserEntity client, ComputerEntity computer) {
+    public ReservationDto(int idReservation, Date devolutionDate, Date startDate, ReservationStatus status, ClientDto client, ComputerEntity computer, List<ScoreEntity> score) {
         this.idReservation = idReservation;
-        this.devolutionDate = devolution_date;
-        this.startDate = start_date;
+        this.devolutionDate = devolutionDate;
+        this.startDate = startDate;
         this.status = status;
         this.client = client;
         this.computer = computer;
+        this.score = score;
     }
-
-    public ReservationEntity(int id) {
-        this.idReservation = id;
-    }
-
 
     public int getIdReservation() {
-
         return idReservation;
     }
 
@@ -62,20 +50,19 @@ public class ReservationEntity {
         this.idReservation = idReservation;
     }
 
-    public java.util.Date getDevolutionDate() {
+    public Date getDevolutionDate() {
         return devolutionDate;
     }
 
-    public void setDevolutionDate(java.util.Date devolutionDate) {
+    public void setDevolutionDate(Date devolutionDate) {
         this.devolutionDate = devolutionDate;
     }
 
-
-    public java.util.Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(java.util.Date startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
@@ -87,11 +74,11 @@ public class ReservationEntity {
         this.status = status;
     }
 
-    public UserEntity getClient() {
+    public ClientDto getClient() {
         return client;
     }
 
-    public void setClient(UserEntity client) {
+    public void setClient(ClientDto client) {
         this.client = client;
     }
 

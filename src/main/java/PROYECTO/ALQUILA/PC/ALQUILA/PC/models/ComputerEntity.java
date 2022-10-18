@@ -1,5 +1,7 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -12,7 +14,7 @@ public class ComputerEntity {
 
 
     private String brand;
-    private Integer model;
+
 
     private String description;
     private String name;
@@ -23,6 +25,11 @@ public class ComputerEntity {
     private CategoryEntity category;
 
 
+    @OneToMany()
+    private List<MessageEntity> messages=new ArrayList<MessageEntity>();
+
+    @OneToMany()
+    private List<ReservationEntity> reservations=new ArrayList<ReservationEntity>();
     public ComputerEntity() {
     }
     
@@ -56,13 +63,7 @@ public class ComputerEntity {
         this.brand = brand;
     }
 
-    public Integer getModel() {
-        return model;
-    }
 
-    public void setModel(Integer model) {
-        this.model = model;
-    }
 
     public String getDescription() {
         return description;
@@ -86,6 +87,14 @@ public class ComputerEntity {
 
     public void setCategory(CategoryEntity category) {
         this.category = category;
+    }
+
+    public List<MessageEntity> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<MessageEntity> messages) {
+        this.messages = messages;
     }
 }
 

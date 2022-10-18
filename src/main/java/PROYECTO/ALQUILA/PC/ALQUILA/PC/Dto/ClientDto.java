@@ -1,67 +1,67 @@
-package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
-import org.apache.catalina.Role;
+package PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto;
 
-import javax.persistence.*;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.RolEntity;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
-@Entity
-@Table(name = "USER")
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class ClientDto {
+
+    private int idClient;
 
 
-
-
-
-    @Column(unique = true)
     private String name;
 
-    @Column(unique = true)
+
     private String email;
     private Integer age;
     private String password;
 
 
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private RolEntity rol;
 
 
-    @OneToMany()
+
     private List<MessageEntity> messages=new ArrayList<MessageEntity>();
 
-    @OneToMany()
+
     private List<ReservationEntity> reservations=new ArrayList<ReservationEntity>();
 
-    public UserEntity() {
+    public ClientDto() {
     }
 
-    public UserEntity(int id, String name, String email, Integer age, String password, RolEntity rol) {
-        this.id = id;
+    public ClientDto(int idClient, String name, String email, Integer age, String password, List<MessageEntity> messages, List<ReservationEntity> reservations) {
+        this.idClient = idClient;
         this.name = name;
         this.email = email;
         this.age = age;
         this.password = password;
-        this.rol = rol;
+        this.messages = messages;
+        this.reservations = reservations;
     }
 
-    public UserEntity(int id) {
-        this.id = id;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public ClientDto(int idClient, String name, String email, Integer age, String password) {
+        this.idClient = idClient;
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.password = password;
     }
 
+    public ClientDto(int idClient) {
+        this.idClient = idClient;
+    }
 
+    public int getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
 
     public String getPassword() {
         return password;
@@ -95,16 +95,13 @@ public class UserEntity {
         this.age = age;
     }
 
-    public RolEntity getRol() {
-        return rol;
-    }
-
-    public void setRol(RolEntity rol) {
-        this.rol = rol;
-    }
 
     public List<MessageEntity> getMessages() {
         return messages;
+    }
+
+    public void setMessages(List<MessageEntity> messages) {
+        this.messages = messages;
     }
 
     public List<ReservationEntity> getReservations() {
@@ -113,11 +110,5 @@ public class UserEntity {
 
     public void setReservations(List<ReservationEntity> reservations) {
         this.reservations = reservations;
-    }
-
-    public void setMessages(List<MessageEntity> messages) {
-        this.messages = messages;
-
-
     }
 }

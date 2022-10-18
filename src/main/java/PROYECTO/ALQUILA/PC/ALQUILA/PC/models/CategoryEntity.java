@@ -1,5 +1,7 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -14,6 +16,8 @@ public class CategoryEntity {
     private String name;
     private String description;
 
+    @OneToMany()
+    private List<ComputerEntity> computers=new ArrayList<ComputerEntity>();
 
     public CategoryEntity() {
     }
@@ -49,5 +53,11 @@ public class CategoryEntity {
     }
 
 
+    public List<ComputerEntity> getComputers() {
+        return computers;
+    }
 
+    public void setComputers(List<ComputerEntity> computers) {
+        this.computers = computers;
+    }
 }

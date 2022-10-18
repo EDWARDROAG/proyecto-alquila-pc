@@ -1,5 +1,6 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.services;
 
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class ReservationService implements IReservationService {
     @Override
     public void delete(Integer id) {
         entityRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ReservationEntity> getListByClient(Integer clientId) {
+        return (List<ReservationEntity>) entityRepository.findByClientId(clientId);
     }
 }

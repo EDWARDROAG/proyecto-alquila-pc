@@ -10,6 +10,7 @@ public interface IMessageService {
     Optional<MessageEntity> getById (Integer id);
 
     List<MessageEntity> getList();
+    List<MessageEntity> getListByClient(Integer clientId);
 
     MessageEntity update(MessageEntity Message);
 
