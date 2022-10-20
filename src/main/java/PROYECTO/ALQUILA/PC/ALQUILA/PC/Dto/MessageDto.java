@@ -1,25 +1,20 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto;
 
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
-
-import javax.persistence.*;
-
 
 public class MessageDto {
     private int idMessage;
 
 
-    private String message_text;
-    private ClientDto client;
-    private ComputerEntity computer;
+    private String messageText;
+    private Computer2Dto computer;
+    private Client2Dto client;
 
 
 
 
-    public MessageDto(int idMessage, String message_text, ComputerEntity computer, ClientDto client) {
+    public MessageDto(int idMessage, String message_text, Computer2Dto computer, Client2Dto client) {
         this.idMessage = idMessage;
-        this.message_text = message_text;
+        this.messageText = message_text;
         this.client = client;
         this.computer = computer;
 
@@ -36,27 +31,27 @@ public class MessageDto {
         this.idMessage = idMessage;
     }
 
-    public String getMessage_text() {
-        return message_text;
+    public String getMessageText() {
+        return messageText;
     }
 
-    public void setMessage_text(String message_text) {
-        this.message_text = message_text;
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 
-    public ComputerEntity getComputer() {
+    public Computer2Dto getComputer() {
         return computer;
     }
 
-    public void setComputer(ComputerEntity computer) {
+    public void setComputer(Computer2Dto computer) {
         this.computer = computer;
     }
 
-    public ClientDto getClient() {
+    public Client2Dto getClient() {
         return client;
     }
 
-    public void setClient(ClientDto client) {
+    public void setClient(Client2Dto client) {
         this.client = client;
     }
 }

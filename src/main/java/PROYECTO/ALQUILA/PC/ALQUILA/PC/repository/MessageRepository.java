@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends CrudRepository<MessageEntity, Integer> {
     List<MessageEntity> findByClientId(Integer clientId);
+    List<MessageEntity> findByClientIdAndComputerId(Integer clientId,Integer computerId);
 }

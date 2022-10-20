@@ -11,6 +11,7 @@ public interface IMessageService {
 
     List<MessageEntity> getList();
     List<MessageEntity> getListByClient(Integer clientId);
+    List<MessageEntity> getListByClientAndComputer(Integer clientId,Integer computerId);
 
     MessageEntity update(MessageEntity Message);
 

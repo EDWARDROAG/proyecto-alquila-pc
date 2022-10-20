@@ -1,13 +1,8 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.ClientDto;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.MessageDto;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.RolEntity;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.*;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.*;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IMessageService;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.util.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class MessageController {
@@ -32,9 +26,15 @@ public class MessageController {
             List<MessageDto> messages = new ArrayList<>();
 
             for (MessageEntity message : list) {
-                ClientDto client = new ClientDto(message.getClient().getId(), message.getClient().getName(), message.getClient().getEmail(), message.getClient().getAge(), message.getClient().getPassword());
-                MessageDto meesageDto = new MessageDto(message.getIdMessage(), message.getMessage_text(), message.getComputer(), client);
-                messages.add(meesageDto);
+                Client2Dto client = new Client2Dto(message.getClient().getId(), message.getClient().getName(), message.getClient().getEmail(), message.getClient().getPassword(), message.getClient().getAge());
+
+                ComputerEntity computerItem=message.getComputer();
+
+                Computer2Dto newComputer2Dto=new Computer2Dto(computerItem.getId(),computerItem.getName(),computerItem.getBrand(),computerItem.getYear(),
+                        computerItem.getDescription(),new CategoryDto(computerItem.getCategory().getId(),computerItem.getCategory().getName(),computerItem.getCategory().getDescription()));
+
+                MessageDto messageDto = new MessageDto(message.getId(), message.getMessageText(), newComputer2Dto, client);
+                messages.add(messageDto);
             }
 
             return new ResponseEntity<>(messages, HttpStatus.OK);
@@ -50,8 +50,14 @@ public class MessageController {
         try {
             MessageEntity message = entityService.getById(id).get();
 
-            ClientDto client = new ClientDto(message.getClient().getId(), message.getClient().getName(), message.getClient().getEmail(), message.getClient().getAge(), message.getClient().getPassword());
-            MessageDto meesageDto = new MessageDto(message.getIdMessage(), message.getMessage_text(), message.getComputer(), client);
+            Client2Dto client = new Client2Dto(message.getClient().getId(), message.getClient().getName(), message.getClient().getEmail(),  message.getClient().getPassword(),message.getClient().getAge());
+                ComputerEntity computerItem=message.getComputer();
+
+            Computer2Dto newComputer2Dto=new Computer2Dto(computerItem.getId(),computerItem.getName(),computerItem.getBrand(),computerItem.getYear(),
+                    computerItem.getDescription(),new CategoryDto(computerItem.getCategory().getId(),computerItem.getCategory().getName(),computerItem.getCategory().getDescription()));
+
+
+            MessageDto meesageDto = new MessageDto(message.getId(), message.getMessageText(),newComputer2Dto, client);
 
             return new ResponseEntity<>(meesageDto, HttpStatus.OK);
 
@@ -67,9 +73,11 @@ public class MessageController {
         try {
 
             UserEntity user = new UserEntity(entityDto.getClient().getIdClient());
-            MessageEntity entity = new MessageEntity(entityDto.getIdMessage(), entityDto.getMessage_text(), entityDto.getComputer(), user);
+
+
+            MessageEntity entity = new MessageEntity(entityDto.getIdMessage(), entityDto.getMessageText(), new ComputerEntity(entityDto.getComputer().getId()), user);
             entity = entityService.add(entity);
-            entityDto.setIdMessage(entity.getIdMessage());
+            entityDto.setIdMessage(entity.getId());
             return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
         } catch (Exception ex) {
             return new ResponseEntity<>("Error:" + ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -81,9 +89,9 @@ public class MessageController {
     public ResponseEntity<?> put(@RequestBody MessageDto entityDto) {
         try {
             UserEntity user = new UserEntity(entityDto.getClient().getIdClient());
-            MessageEntity entity = new MessageEntity(entityDto.getIdMessage(), entityDto.getMessage_text(), entityDto.getComputer(), user);
+            MessageEntity entity = new MessageEntity(entityDto.getIdMessage(), entityDto.getMessageText(), new ComputerEntity(entityDto.getComputer().getId()), user);
             entity = entityService.update(entity);
-            entityDto.setIdMessage(entity.getIdMessage());
+            entityDto.setIdMessage(entity.getId());
             return new ResponseEntity<>(entityDto, HttpStatus.CREATED);
         } catch (Exception ex) {
             return new ResponseEntity<>("Error:" + ex.getMessage(), HttpStatus.BAD_REQUEST);

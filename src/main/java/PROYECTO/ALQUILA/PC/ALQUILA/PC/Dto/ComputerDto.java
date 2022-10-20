@@ -1,18 +1,16 @@
-package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
-import javax.persistence.*;
+package PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto;
 
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.CategoryEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
-@Entity
-@Table(name = "computer")
-public class ComputerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ComputerDto {
     private int id;
 
     private String name;
@@ -20,24 +18,24 @@ public class ComputerEntity {
     private String year;
     private String description;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("computer")
-    private CategoryEntity category;
-    
-   
-    @OneToMany( fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties({"computer", "client"})
+    private CategoryDto category;
+
+
     private List<MessageEntity> messages=new ArrayList<MessageEntity>();
 
-    @OneToMany( fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties({"computer","client"})
     private List<ReservationEntity> reservations=new ArrayList<ReservationEntity>();
-    
-    public ComputerEntity() {
+
+    public ComputerDto() {
     }
 
-    public ComputerEntity(int id) {
+
+    public ComputerDto(int id, String name, String brand, String year, String description, CategoryDto category) {
         this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.year = year;
+        this.description = description;
+        this.category = category;
     }
 
     public int getId() {
@@ -80,11 +78,11 @@ public class ComputerEntity {
         this.description = description;
     }
 
-    public CategoryEntity getCategory() {
+    public CategoryDto getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
+    public void setCategory(CategoryDto category) {
         this.category = category;
     }
 
@@ -103,7 +101,5 @@ public class ComputerEntity {
     public void setReservations(List<ReservationEntity> reservations) {
         this.reservations = reservations;
     }
-
-
 }
 

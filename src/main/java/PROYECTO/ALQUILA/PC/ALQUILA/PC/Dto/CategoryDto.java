@@ -1,32 +1,27 @@
-package PROYECTO.ALQUILA.PC.ALQUILA.PC.models;
+package PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
-@Entity
-@Table(name = "CATEGORY")
-public class CategoryEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDto {
     private int id;
 
-    @Column(unique = true)
     private String name;
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<ComputerEntity> computers=new ArrayList<ComputerEntity>();
 
-    public CategoryEntity() {
+    public CategoryDto() {
     }
-    
 
-    public CategoryEntity(int id) {
+
+    public CategoryDto(int id, String name, String description) {
         this.id = id;
+        this.name = name;
+        this.description = description;
     }
-
 
     public int getId() {
         return id;
@@ -50,14 +45,5 @@ public class CategoryEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-    public List<ComputerEntity> getComputers() {
-        return computers;
-    }
-
-    public void setComputers(List<ComputerEntity> computers) {
-        this.computers = computers;
     }
 }

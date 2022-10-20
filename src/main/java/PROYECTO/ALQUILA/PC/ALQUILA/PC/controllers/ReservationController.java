@@ -1,9 +1,11 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.ClientDto;
-import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.ReservationDto;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.*;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.MessageEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ReservationEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.UserEntity;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IMessageService;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class ReservationController {
     @Autowired
     IReservationService entityService;
 
+    @Autowired
+    IMessageService messageService;
+
 
     @GetMapping("/api/Reservation/all")
 
@@ -30,8 +35,23 @@ public class ReservationController {
             List<ReservationDto> reservationsDto = new ArrayList<>();
 
             for (ReservationEntity entity : list) {
-                ClientDto client = new ClientDto(entity.getClient().getId(), entity.getClient().getName(), entity.getClient().getEmail(), entity.getClient().getAge(), entity.getClient().getPassword());
-                ReservationDto reservationDto = new ReservationDto(entity.getIdReservation(), entity.getDevolutionDate(), entity.getStartDate(), entity.getStatus(), client, entity.getComputer(), null);
+                Client2Dto client = new Client2Dto(entity.getClient().getId(), entity.getClient().getName(),
+                        entity.getClient().getEmail(), entity.getClient().getPassword(), entity.getClient().getAge());
+
+                ComputerEntity computerItem = entity.getComputer();
+
+                List<MessageEntity> messagesEntities = messageService.getListByClientAndComputer(entity.getClient().getId(), entity.getComputer().getId());
+
+                List<Message2Dto> messages = new ArrayList<>();
+                for (MessageEntity messageEntity : messagesEntities) {
+                    Message2Dto newMessage = new Message2Dto(messageEntity.getId(), messageEntity.getMessageText());
+                    messages.add(newMessage);
+                }
+
+                Computer3Dto computer = new Computer3Dto(computerItem.getId(), computerItem.getName(), computerItem.getBrand(), computerItem.getYear(),
+                        computerItem.getDescription(), new CategoryDto(computerItem.getCategory().getId(), computerItem.getCategory().getName(), computerItem.getCategory().getDescription()), messages);
+
+                ReservationDto reservationDto = new ReservationDto(entity.getIdReservation(), entity.getDevolutionDate(), entity.getStartDate(), entity.getStatus(), computer, client, null);
                 reservationsDto.add(reservationDto);
             }
 
@@ -48,8 +68,25 @@ public class ReservationController {
 
         try {
             ReservationEntity entity = entityService.getById(id).get();
-            ClientDto client = new ClientDto(entity.getClient().getId(), entity.getClient().getName(), entity.getClient().getEmail(), entity.getClient().getAge(), entity.getClient().getPassword());
-            ReservationDto reservationDto = new ReservationDto(entity.getIdReservation(), entity.getDevolutionDate(), entity.getStartDate(), entity.getStatus(), client, entity.getComputer(), null);
+
+            Client2Dto client = new Client2Dto(entity.getClient().getId(), entity.getClient().getName(),
+                    entity.getClient().getEmail(), entity.getClient().getPassword(), entity.getClient().getAge());
+
+            ComputerEntity computerItem = entity.getComputer();
+
+            List<MessageEntity> messagesEntities = messageService.getListByClientAndComputer(entity.getClient().getId(), entity.getComputer().getId());
+
+            List<Message2Dto> messages = new ArrayList<>();
+            for (MessageEntity messageEntity : messagesEntities) {
+                Message2Dto newMessage = new Message2Dto(messageEntity.getId(), messageEntity.getMessageText());
+                messages.add(newMessage);
+            }
+
+            Computer3Dto computer = new Computer3Dto(computerItem.getId(), computerItem.getName(), computerItem.getBrand(), computerItem.getYear(),
+                    computerItem.getDescription(), new CategoryDto(computerItem.getCategory().getId(), computerItem.getCategory().getName(), computerItem.getCategory().getDescription()), messages);
+
+            ReservationDto reservationDto = new ReservationDto(entity.getIdReservation(), entity.getDevolutionDate(), entity.getStartDate(), entity.getStatus(), computer, client, null);
+
 
             return new ResponseEntity<>(reservationDto, HttpStatus.OK);
         } catch (Exception ex) {
@@ -66,7 +103,7 @@ public class ReservationController {
             ReservationEntity entity = new ReservationEntity(entityDto.getIdReservation(),
                     entityDto.getDevolutionDate(),
                     entityDto.getStartDate(),
-                    entityDto.getStatus(), user, entityDto.getComputer());
+                    entityDto.getStatus(), user, new ComputerEntity(entityDto.getComputer().getId()));
 
             entity = entityService.add(entity);
             entityDto.setIdReservation(entity.getIdReservation());
@@ -82,7 +119,7 @@ public class ReservationController {
         try {
             UserEntity user = new UserEntity(entityDto.getClient().getIdClient());
 
-            ReservationEntity entity = new ReservationEntity(entityDto.getIdReservation(), entityDto.getDevolutionDate(), entityDto.getStartDate(), entityDto.getStatus(), user, entityDto.getComputer());
+            ReservationEntity entity = new ReservationEntity(entityDto.getIdReservation(), entityDto.getDevolutionDate(), entityDto.getStartDate(), entityDto.getStatus(), user,new ComputerEntity(entityDto.getComputer().getId()));
             entity = entityService.update(entity);
             entityDto.setIdReservation(entity.getIdReservation());
             return new ResponseEntity<>(entityDto, HttpStatus.CREATED);

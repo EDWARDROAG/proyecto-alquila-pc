@@ -26,16 +26,16 @@ public class AdminController {
 
     public ResponseEntity<?> getAll() {
         try {
-            List<UserEntity> list = entityService.getAllByRol(Roles.Client.ordinal());
-            List<AdminDto> clients = new ArrayList<>();
+            List<UserEntity> list = entityService.getAllByRol(Roles.Admin.ordinal());
+            List<AdminDto> listDto = new ArrayList<>();
             for (UserEntity user : list) {
 
-                AdminDto client = new AdminDto(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getPassword());
-                clients.add(client);
+                AdminDto newAdminDto = new AdminDto(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getPassword());
+                listDto.add(newAdminDto);
             }
 
 
-            return new ResponseEntity<>(clients, HttpStatus.OK);
+            return new ResponseEntity<>(listDto, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>("Error:" + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -47,10 +47,10 @@ public class AdminController {
         //return entityService.getById(id);
         try {
             UserEntity user = entityService.getById(id).get();
-            AdminDto client = new AdminDto(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getPassword());
+            AdminDto adminDto = new AdminDto(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getPassword());
 
 
-            return new ResponseEntity<>(client, HttpStatus.OK);
+            return new ResponseEntity<>(adminDto, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>("Error:" + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -63,7 +63,7 @@ public class AdminController {
 
         try {
 
-            UserEntity user=new UserEntity(AdminDto.getIdAdmin(),AdminDto.getName(),AdminDto.getEmail(),AdminDto.getAge(),AdminDto.getPassword(),new RolEntity(Roles.Client.ordinal()));
+            UserEntity user=new UserEntity(AdminDto.getIdAdmin(),AdminDto.getName(),AdminDto.getEmail(),AdminDto.getAge(),AdminDto.getPassword(),new RolEntity(Roles.Admin.ordinal()));
             UserEntity responseUser = entityService.add(user);
             AdminDto.setIdAdmin(responseUser.getId());
             return new ResponseEntity<>(AdminDto, HttpStatus.CREATED);
@@ -75,7 +75,7 @@ public class AdminController {
     @PutMapping("/api/Admin/update")
     public ResponseEntity<?> put(@RequestBody AdminDto AdminDto) {
         try {
-            UserEntity user=new UserEntity(AdminDto.getIdAdmin(),AdminDto.getName(),AdminDto.getEmail(),AdminDto.getAge(),AdminDto.getPassword(),new RolEntity(Roles.Client.ordinal()));
+            UserEntity user=new UserEntity(AdminDto.getIdAdmin(),AdminDto.getName(),AdminDto.getEmail(),AdminDto.getAge(),AdminDto.getPassword(),new RolEntity(Roles.Admin.ordinal()));
             UserEntity responseUser = entityService.update(user);
             AdminDto.setIdAdmin(responseUser.getId());
             return new ResponseEntity<>(AdminDto, HttpStatus.CREATED);

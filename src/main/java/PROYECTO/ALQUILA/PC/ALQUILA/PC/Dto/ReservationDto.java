@@ -16,24 +16,25 @@ public class ReservationDto {
     private Date startDate =new Date();
     private Date devolutionDate;
 
-    private ReservationStatus status=ReservationStatus.Programmed;
+    private ReservationStatus status=ReservationStatus.Created;
 
-    private ComputerEntity computer;
-    private ClientDto client;
+    private Computer3Dto computer;
+    private Client2Dto client;
 
 
     private List<ScoreEntity> score=new ArrayList<ScoreEntity>();
 
+
     public ReservationDto() {
     }
 
-    public ReservationDto(int idReservation, Date devolutionDate, Date startDate, ReservationStatus status, ClientDto client, ComputerEntity computer, List<ScoreEntity> score) {
+    public ReservationDto(int idReservation, Date startDate, Date devolutionDate, ReservationStatus status, Computer3Dto computer, Client2Dto client,  List<ScoreEntity> score) {
         this.idReservation = idReservation;
-        this.devolutionDate = devolutionDate;
         this.startDate = startDate;
+        this.devolutionDate = devolutionDate;
         this.status = status;
-        this.client = client;
         this.computer = computer;
+        this.client = client;
         this.score = score;
     }
 
@@ -45,20 +46,20 @@ public class ReservationDto {
         this.idReservation = idReservation;
     }
 
-    public Date getDevolutionDate() {
-        return devolutionDate;
-    }
-
-    public void setDevolutionDate(Date devolutionDate) {
-        this.devolutionDate = devolutionDate;
-    }
-
     public Date getStartDate() {
         return startDate;
     }
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public Date getDevolutionDate() {
+        return devolutionDate;
+    }
+
+    public void setDevolutionDate(Date devolutionDate) {
+        this.devolutionDate = devolutionDate;
     }
 
     public ReservationStatus getStatus() {
@@ -69,20 +70,20 @@ public class ReservationDto {
         this.status = status;
     }
 
-    public ClientDto getClient() {
-        return client;
-    }
-
-    public void setClient(ClientDto client) {
-        this.client = client;
-    }
-
-    public ComputerEntity getComputer() {
+    public Computer3Dto getComputer() {
         return computer;
     }
 
-    public void setComputer(ComputerEntity computer) {
+    public void setComputer(Computer3Dto computer) {
         this.computer = computer;
+    }
+
+    public Client2Dto getClient() {
+        return client;
+    }
+
+    public void setClient(Client2Dto client) {
+        this.client = client;
     }
 
     public List<ScoreEntity> getScore() {
@@ -92,5 +93,6 @@ public class ReservationDto {
     public void setScore(List<ScoreEntity> score) {
         this.score = score;
     }
+
 }
 

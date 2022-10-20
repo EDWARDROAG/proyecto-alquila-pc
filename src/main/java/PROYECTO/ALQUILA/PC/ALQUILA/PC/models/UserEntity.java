@@ -33,10 +33,10 @@ public class UserEntity {
     private RolEntity rol;
 
 
-    @OneToMany()
+    @OneToMany( fetch = FetchType.EAGER)
     private List<MessageEntity> messages=new ArrayList<MessageEntity>();
 
-    @OneToMany()
+    @OneToMany( fetch = FetchType.LAZY)
     private List<ReservationEntity> reservations=new ArrayList<ReservationEntity>();
 
     public UserEntity() {
@@ -46,6 +46,7 @@ public class UserEntity {
         this.id = id;
         this.name = name;
         this.email = email;
+
         this.password = password;
         this.age = age;
         this.rol = rol;

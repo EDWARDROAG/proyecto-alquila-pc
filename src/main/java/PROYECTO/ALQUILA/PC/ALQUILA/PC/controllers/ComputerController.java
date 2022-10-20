@@ -1,5 +1,7 @@
 package PROYECTO.ALQUILA.PC.ALQUILA.PC.controllers;
 
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.CategoryDto;
+import PROYECTO.ALQUILA.PC.ALQUILA.PC.Dto.ComputerDto;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.models.ComputerEntity;
 import PROYECTO.ALQUILA.PC.ALQUILA.PC.services.IComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +29,18 @@ public class ComputerController {
 
         try {
             List<ComputerEntity> list= entityService.getList();
-            return  new ResponseEntity<>(list, HttpStatus.OK);
+
+            List<ComputerDto> listDto = new ArrayList<>();
+
+            for ( ComputerEntity computerItem:list) {
+                ComputerDto newComputerDto=new ComputerDto(computerItem.getId(),computerItem.getName(),computerItem.getBrand(),computerItem.getYear(),
+                        computerItem.getDescription(),new CategoryDto(computerItem.getCategory().getId(),computerItem.getCategory().getName(),computerItem.getCategory().getDescription()));
+
+                listDto.add(newComputerDto);
+            }
+
+
+            return  new ResponseEntity<>(listDto, HttpStatus.OK);
         }catch (Exception ex){
             return  new ResponseEntity<>("Error:"+ex.getMessage(), HttpStatus.BAD_REQUEST);
         }

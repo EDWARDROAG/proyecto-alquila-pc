@@ -37,6 +37,11 @@ public class MessageService implements IMessageService {
     }
 
     @Override
+    public List<MessageEntity> getListByClientAndComputer(Integer clientId, Integer computerId) {
+        return (List<MessageEntity>) entityRepository.findByClientIdAndComputerId(clientId,computerId);
+    }
+
+    @Override
     public MessageEntity update(MessageEntity entity) {
         entityRepository.save(entity);
         return entity;

@@ -35,16 +35,16 @@ public class ClietController {
     public ResponseEntity<?> getAll() {
         try {
             List<UserEntity> list = entityService.getAllByRol(Roles.Client.ordinal());
-            List<ClientDto> clients = new ArrayList<>();
+            List<ClientDto> listDto = new ArrayList<>();
             for (UserEntity user : list) {
                 List<MessageEntity> messages = messageService.getListByClient(user.getId());
                 List<ReservationEntity> reservations = reservationService.getListByClient(user.getId());
                 ClientDto client = new ClientDto(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getPassword(), messages, reservations);
-                clients.add(client);
+                listDto.add(client);
             }
 
 
-            return new ResponseEntity<>(clients, HttpStatus.OK);
+            return new ResponseEntity<>(listDto, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>("Error:" + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }

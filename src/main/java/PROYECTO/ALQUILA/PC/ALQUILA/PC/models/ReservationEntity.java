@@ -22,7 +22,7 @@ public class ReservationEntity {
     private java.util.Date devolutionDate;
 
      @Column(nullable=false)
-    private ReservationStatus status=ReservationStatus.Programmed;
+    private ReservationStatus status=ReservationStatus.Created;
 
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -31,7 +31,7 @@ public class ReservationEntity {
     @ManyToOne(optional = false,  fetch = FetchType.EAGER)
     private ComputerEntity computer;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.LAZY)
     private List<ScoreEntity> score=new ArrayList<ScoreEntity>();
 
     public ReservationEntity() {
